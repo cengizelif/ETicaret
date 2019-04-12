@@ -1,0 +1,33 @@
+﻿@model IEnumerable<_08042019_MVC.Models.Kategori>
+
+@{
+    ViewBag.Title = "Kategoriler";
+}
+
+<h2>Kategoriler</h2>
+
+<p>
+    @Html.ActionLink("Yeni Kategori", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Kategori
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.KategoriAdi)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.KategoriID }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.KategoriID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.KategoriID })
+        </td>
+    </tr>
+}
+
+</table>

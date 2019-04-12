@@ -1,0 +1,63 @@
+﻿@model IEnumerable<_08042019_MVC.Models.Sepet>
+
+@{
+    ViewBag.Title = "Sepet";
+}
+
+<h2>Sepet</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Urunler.UrunAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adet)
+        </th>
+        <th></th>
+        <th>
+            @Html.DisplayNameFor(model => model.Toplam)
+        </th>
+  
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Urunler.UrunAdi)
+        </td>
+        <td>
+            <form action="/Sepets/SepetGuncelle">
+                <input type="hidden" name="id" id="id" value="@item.SepetID"/>
+                <input type="number" name="adet" id="adet" value="@item.Adet"/>
+                <input type="submit" id="gonder" value="Güncelle"/>
+            </form>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adet)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Toplam)
+        </td>
+        <td>
+            @Html.ActionLink("Sil", "Delete", new { id = item.SepetID })
+        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.SepetID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SepetID }) |
+         
+        </td>*@
+    </tr>
+}
+    <tr>
+        <th>Toplam:</th>
+        <th></th>
+        <th>@Model.Sum(x=>x.Adet)</th>
+        <th>@Model.Sum(x=>x.Toplam)</th>
+    </tr>
+    <tr>
+        <td><a class="btn btn-default" href="@Url.Action("Index","Home")">Alışverişe Devam Et</a></td>
+        <td colspan="3" style="text-align:right"><a class="btn btn-default" href="@Url.Action("SiparisTamamla","Siparis")">Siparişi Tamamla</a></td>
+    </tr>
+</table>
