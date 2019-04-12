@@ -1,0 +1,219 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Metodlar_08012019
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Yaz();
+            // [erişim belirleyici]<metot tipi> metot ismi(parametreler)
+            /*  Erişim belirleyiciler
+             *  Static  -- Static metodlar içerisinden çağırlırlar.
+             *  bellekte yer ayırma zamanları farklıdır.
+             *  
+             *  
+             *  Public
+             *  Private
+             *  Protected
+             *  Internal
+             *  Internal Protected
+             */
+            Ekrandagoster("elif", "cengiz");
+          //  metodların aşırı yüklenmesi = overloading
+            SayilariTopla(3, 5, 10);
+            SayilariTopla(18, 20);
+
+            int donendeger;
+            donendeger = sayilarinCarpimi(15, 25);
+            Console.WriteLine(donendeger);
+
+            int buyuksayi = buyukSayiGoster(15, 25);
+            Console.WriteLine(buyuksayi);
+
+            Console.WriteLine(buyukSayiGoster(15, 25));
+
+
+            int[] dizi = { 55, 77, 88, 34, 22, 11, 99, 58 };
+            DiziGoster(dizi);
+
+            SayilariTopla(5, 55, 77, 34, 43, 56, 48, 100, 105, 180, 200);
+            Console.WriteLine(x);
+
+            Console.WriteLine("Adınızı giriniz:");
+            string ad = Console.ReadLine();
+            Yaz(ad);
+            int sayi1, sayi2;
+            Console.Write("1.sayıyı giriniz:");
+            sayi1 = int.Parse(Console.ReadLine());
+            Console.Write("2.sayıyı giriniz:");
+            sayi2 = int.Parse(Console.ReadLine());
+            int cikarmasonucu = SayilariCikar(sayi1, sayi2);
+            int secim = menuGoster();
+            switch (secim)
+            {
+                case 1:
+                    Console.Write("Toplam:" + SayilariTopla(sayi1, sayi2));
+                    break;
+                case 2:
+                    Console.WriteLine("Fark:" + cikarmasonucu);
+                    break;
+
+                case 3:
+                    Console.Write("Carpim:" + sayilarinCarpimi(sayi1, sayi2));
+                    break;
+                case 4:
+                    Console.Write("Bolum:" + SayilariBol(sayi1, sayi2));
+                    break;
+                default:
+                    break;
+            }
+
+            // Dışarıdan girilen sayının asal olup olmadığını bulan metodu yazın
+
+            int rakam = 0;
+            do
+            {
+                Console.Write("sayıyı giriniz:");
+                rakam = int.Parse(Console.ReadLine());
+                if (rakam > 0)
+                {
+                    if (asalmi(rakam))
+                        Console.WriteLine("Sayı asaldır");
+                    else Console.WriteLine("Sayı asal değil");
+                }
+            } while (rakam != -1);
+
+            //Dışarıdan girilen kelimeyi tersden yazan
+
+            Console.WriteLine("Kelimeyi giriniz:");
+            string kelime = Console.ReadLine();
+        
+            Console.WriteLine(TersdenYaz(kelime));
+            Console.ReadLine();
+        }
+
+        static string TersdenYaz(string gelenkelime)
+        {
+            string terskelime = "";
+            for (int i = gelenkelime.Length-1; i >=0 ; i--)
+            {
+                terskelime += gelenkelime[i];
+            }
+            return terskelime;          
+        }
+
+        static bool asalmi(int sayi)
+        {
+            bool cevap = true;
+                    
+                for (int i = 2; i < sayi; i++)
+                {
+                  if (sayi % i == 0)
+                    {
+                        cevap = false;
+                    }
+                }
+
+            if (sayi == 1)
+                cevap = false;
+            return cevap;
+        }
+
+
+        static int SayilariTopla(int boluneceksayi,params int[] dizi)
+        {
+            int toplam = 0;
+            for (int i = 0; i < dizi.Length; i++)
+            {
+                toplam += dizi[i];
+            }
+            toplam = toplam / boluneceksayi;
+            return toplam;
+        }
+
+        static int menuGoster()
+        {
+            Console.WriteLine("1-Toplama");
+            Console.WriteLine("2-Çıkarma");
+            Console.WriteLine("3-Çarpma");
+            Console.WriteLine("4-Bölme");
+            Console.Write("İşlemi seçiniz:");
+            int secim = int.Parse(Console.ReadLine());
+            return secim;
+        }
+
+        static void DiziGoster(int[] gelendizi)
+        {
+            foreach (var item in gelendizi)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+
+        static int buyukSayiGoster(int sayi1, int sayi2)
+        {
+            if (sayi1 > sayi2)
+                return sayi1;
+            else
+                return sayi2;
+
+            //    Console.WriteLine("Buyuk sayı:"+sayi1);
+            //else Console.WriteLine("Buyuk sayı:"+sayi2);
+
+        }
+        static int sayilarinCarpimi(int sayi1, int sayi2)
+        {
+            int carpim = sayi1 * sayi2;
+            return carpim;
+          //  Console.WriteLine("Çarpım:{0}", carpim);
+        }
+
+        static int SayilariTopla(int s1, int s2)
+        {
+            int toplam = s1 + s2;
+            return toplam;
+          //  Console.WriteLine("Toplam:{0}",toplam);
+        }
+        static int SayilariCikar(int sayi1, int sayi2)
+        {
+            int cikarma = sayi1 - sayi2;
+            return cikarma;
+            //  Console.WriteLine("Toplam:{0}",toplam);
+        }
+        static int SayilariBol(int sayi1, int sayi2)
+        {
+            int bolum = sayi1 / sayi2;
+            return bolum;
+            //  Console.WriteLine("Toplam:{0}",toplam);
+        }
+        static void SayilariTopla(int sayi1, int sayi2,int sayi3)
+        {
+            int toplam = sayi1 + sayi2+sayi3;
+            Console.WriteLine("Toplam:{0}", toplam);
+        }
+
+        static void Ekrandagoster(string ad,string soyad)
+        {
+            Console.WriteLine("Adı:{0},Soyadı:{1}",ad,soyad);
+            Console.WriteLine($"Adı:{ad},Soyadı:{soyad}");
+        } 
+                 
+        static void Yaz(string isim)
+        {
+            Console.WriteLine("Merhaba "+isim);
+        }
+
+        static void Oku()
+        {
+            string deger;
+            deger=Console.ReadLine();
+        }
+
+  }
+}
