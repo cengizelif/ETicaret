@@ -1,0 +1,53 @@
+﻿@model _08042019_MVC.Models.Urunler
+
+@{
+    ViewBag.Title = "Ürün Detayı";
+}
+
+<h2>Ürün Detayı</h2>
+
+<div>
+    <h4>Ürünler</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+           Ürün Adı
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAdi)
+        </dd>
+
+        <dt>
+            Açıklama
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunAciklamasi)
+        </dd>
+
+        <dt>
+           Fiyat
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UrunFiyati)
+        </dd>
+
+        <dt>
+            Kategori
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kategori.KategoriAdi)
+        </dd>
+
+    </dl>
+    <div class="col-md-6">
+        <img src="~/images/@(Model.UrunID+".jpg")" alt="@Model.UrunAdi" width="300" height="300" />
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Düzenle", "Edit", new { id = Model.UrunID }) |
+    @Html.ActionLink("Listeye Dön", "Index")
+</p>

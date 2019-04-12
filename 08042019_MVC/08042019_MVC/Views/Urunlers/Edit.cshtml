@@ -1,0 +1,94 @@
+﻿@model _08042019_MVC.Models.Urunler
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="jumbotron">
+    <h1>Ürün Güncelleme</h1>
+</div>
+<div class="row">
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <div class="col-md-8">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.UrunID)
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.RefKatID, "Kategori", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownList("RefKatID", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.RefKatID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ürün Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UrunAdi, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UrunAdi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ürün Açıklama", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(model => model.UrunAciklamasi, new { @class = "form-control", rows = "10", cols = "45" })
+                        @Html.ValidationMessageFor(model => model.UrunAciklamasi, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.Label("Ürün Fiyatı", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.UrunFiyati, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UrunFiyati, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2">Ürün Resim</label>
+                    <div class="col-md-10">
+                        <input type="file" id="UrunResim" name="UrunResim" class="form-control" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Kaydet" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <img src="~/images/@(Model.UrunID+".jpg")" alt="@Model.UrunAdi" width="300" height="300" id="img" />
+            </div>
+        </div>
+    }
+</div>
+
+<div class="row">
+    @Html.ActionLink("Ürün Listesine Geri Dön", "Index")
+</div>
+
+<script type="text/javascript" language="javascript">
+    $(document).ready(function () {
+        $("#UrunResim").change(function () {
+            var dosya = document.getElementById("UrunResim");
+            if (dosya.files && dosya.files[0]) {
+                var veoku = new FileReader();
+                veoku.onload = function () {
+                    var adres = veoku.result;
+                    $('#img').attr('src', adres);
+                    //$('.abc').html('<img height="250" src="' + adres + '"/>');
+                }
+                veoku.readAsDataURL(dosya.files[0]);//veri okuma
+            }
+        });
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

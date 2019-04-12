@@ -1,0 +1,70 @@
+﻿@model IEnumerable<_08042019_MVC.Models.Siparis>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Ad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Soyad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adres)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefon)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TCKimlik)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AspNetUsers.Email)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Soyad)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adres)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefon)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TCKimlik)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarih)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AspNetUsers.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Detay", "Details", new { id = item.SiparisID })
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.SiparisID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.SiparisID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.SiparisID })*@
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,27 @@
+﻿@using _08042019_MVC.Models;
+@{
+
+    Kategori kisim = ViewBag.kategori as Kategori;
+    ViewBag.Title = kisim.KategoriAdi;
+}
+
+<h2>@kisim.KategoriAdi</h2>
+
+<div class="row">
+    0
+
+    <div class="col-md-9">
+        <div class="row">
+            @foreach (var item in ViewData.Model)
+            {
+                <div class="col-md-4" style="border:1px solid #808080">
+                    <h5>@item.UrunAdi</h5>
+                    <img src="/images/@(item.UrunID).jpg" style="max-width:100%; height:250px;" />
+
+                    <p><a class="btn btn-default" href="@Url.Action("UrunDetay", "Home", new { id= item.UrunID })">Ürün Detay &raquo;</a> <span style="color:red;float:right;font-weight:bold;font-size:16px;">@item.UrunFiyati TL</span></p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

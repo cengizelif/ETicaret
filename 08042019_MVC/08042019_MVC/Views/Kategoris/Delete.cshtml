@@ -1,0 +1,31 @@
+﻿@model _08042019_MVC.Models.Kategori
+
+@{
+    ViewBag.Title = "Kategori Sil";
+}
+
+<h2>Kategori Sil</h2>
+
+<div>
+    <h4>Kategori</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Kategori
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KategoriAdi)
+        </dd>
+
+    </dl>
+    <h5>Kategoriyi silmek istediğinize emin misiniz?</h5>
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-default" /> |
+            @Html.ActionLink("Listeye dön", "Index")
+        </div>
+    }
+</div>

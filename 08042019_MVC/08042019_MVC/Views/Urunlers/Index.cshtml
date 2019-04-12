@@ -1,0 +1,55 @@
+﻿@model IEnumerable<_08042019_MVC.Models.Urunler>
+
+@{
+    ViewBag.Title = "Ürünler";
+}
+
+<h2>Ürünler</h2>
+
+<p>
+    @Html.ActionLink("Yeni Ürün", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Ürün Adı
+        </th>
+        <th>
+           Açıklama
+        </th>
+        <th>Resim</th>
+        <th>
+           Fiyat
+        </th>
+        <th>
+           Kategori
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAdi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunAciklamasi)
+        </td>
+        <td>
+            <img src="~/images/@(item.UrunID).jpg" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UrunFiyati)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Kategori.KategoriAdi)
+        </td>
+        <td>
+            @Html.ActionLink("Düzenle", "Edit", new { id=item.UrunID }) |
+            @Html.ActionLink("Detaylar", "Details", new { id=item.UrunID }) |
+            @Html.ActionLink("Sil", "Delete", new { id=item.UrunID })
+        </td>
+    </tr>
+}
+
+</table>
